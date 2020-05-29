@@ -16,9 +16,9 @@
   "license": "ISC",
   "devDependencies" : {
     "jquery"                : "^2.1.4",
-    "jquery.mobile"         : "jquery.mobile-1.4.3",
-    "jquery-ui"             : "jquery-ui-1.11.1",
+    /*"jquery.mobile"         : "jquery.mobile-1.4.3",
+    "jquery-ui"             : "^jquery-ui-1.11.1",
     "jquery.ui.touch-punch"  : "jquery.ui.touch-punch-0.2.3",
-    "jquery.validate"       : "jquery.validate-1.10.0"
+    "jquery.validate"       : "jquery.validate-1.10.0"*/
   }
 }
