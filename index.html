@@ -49,10 +49,10 @@
 </head>
 <body>
 <!--Splash Page-->
-<section data-role="page" id="splashPage">
+<section data-role="page" id="homePage">
     <header data-role="header">
         <img src="assets/images/icons/icons-57.png" class="ui-btn-left" alt="Food Plate logo">
-        <h1>Food Plate</h1>
+        <h1 id="homeHeader">Food Plate</h1>
     </header>
     <main id="splashContent" data-role="content">
         <div id="initScreen">
@@ -62,17 +62,13 @@
             </form>
         </div>
     </main>
-    <div data-role="footer" id="splashFooter" data-theme="b" data-back-btn-text="">
-        <h4>Your Daily Food Plate</h4>
-    </div>
 </section>
+
 <!--Register Form Page-->
 <section data-role="page" id="registerFormPage">
     <header data-role="header" data-add-back-btn="false" id="registerHeader">
-        <h1>Food Plate</h1>
+        <h1 id="regHeader">Food Plate</h1>
     </header>
-
-    <!--Register Confirmation Page-->
     <main data-role="content">
         <div id="registerConfirm"></div>
         <div id="registerForm">
@@ -124,10 +120,11 @@
         <h4>Your Daily Food Plate</h4>
     </div>
 </section>
+
 <!--Add Food Page-->
 <section data-role="page" id="addFoodPage">
     <header data-role="header" data-theme="b">
-        <h1 id="welcomeHeader">Daily Food Plate</h1>
+        <h1 id="addFoodHeader">Daily Food Plate</h1>
     </header>
     <main data-role="content" id="addFoodContent">
         <div id="foodPlateWrapper" class="plateWrapper">
@@ -155,13 +152,13 @@
         <h4>Your Daily Food Plate</h4>
     </div>
 </section>
+
 <!-- JavaScript Libraries -->
 <!-- jQuery JavaScript Library v2.1.4 LOCAL -->
 <script src="node_modules/jquery/dist/jquery.js"></script>
 
 <!-- jQuery Mobile 1.4.3 LOCAL -->
 <script src="libs/jquery.mobile-1.4.3/jquery.mobile-1.4.3.js"></script>
-
 <!-- jQuery UI - v1.11.1 - 2014-08-13-->
 <script src="libs/jquery-ui/jquery-ui.min.js"></script>
 
@@ -170,10 +167,9 @@
 
 <script src="libs/jqueryValidate/jquery.validate.js"></script>
 
-<!-- FoodPlate Main  JS-->
-<script src="scripts/modules/FoodPlateApp.js" type="module">
-</script>
-
+<!-- FoodPlate -->
+<script src="scripts/user.js"></script>
+<script src="scripts/main.js"></script>
 
 
 </body>
