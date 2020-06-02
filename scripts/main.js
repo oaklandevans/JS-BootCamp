@@ -110,8 +110,7 @@ $(document).ready(function() {
         var un = document.getElementById('firstName');
         if (un.checkValidity() === false) {
             alert("You did not complete the First Name field.")
-        }
-        else {
+        } else {
             //get form data
             console.log("getting user data from form");
             //get and log userName

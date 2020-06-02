@@ -77,9 +77,9 @@
         <div id="registerConfirm"></div>
         <div id="registerForm">
             <form name="register_frm" id="register_frm">
-                <input type="text" name="First Name" id="firstName" aria-required="true" required placeholder="Type your first name here." class="required">
+                <input type="text" name="FirstName" id="firstName" aria-required="true" required placeholder="Type your first name here." class="required">
 
-                <fieldset data-role="controlgroup" data-type="horizontal" aria-required="true">
+                <fieldset id="genderFieldSet" data-role="controlgroup" data-type="horizontal" aria-required="true">
                     <input type="radio" name="gender" id="sexF" value="F">
                     <label for="sexF">Female</label>
                     <input type="radio" name="gender" id="sexM" value="M"/>
@@ -115,7 +115,7 @@
                 <div id="errMsgBox"></div>
                 </div>
                 <div>
-                    <input type="submit" name="register_user" id="register_user" role="button" value="Register User" class="fpButton" >
+                    <input type="submit" name="register_user" id="register_user_btn" role="button" value="Register User" class="fpButton" >
                 </div>
             </form>
         </div>
@@ -170,10 +170,8 @@
 
 <script src="libs/jqueryValidate/jquery.validate.js"></script>
 
-<!-- FoodPlate Main  JS-->
-<script src="scripts/modules/FoodPlateApp.js" type="module">
-</script>
-
+<!-- FoodPlate FoodPlate  JS-->
+<script src="scripts/modules/main.js" type="module"></script>
 
 
 </body>

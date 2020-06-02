@@ -1,4 +1,4 @@
-FoodPlateApp.InitUser = (function() {
+FoodPlate.InitUser = (function() {
         console.log('FoodPlateApp InitUser module loaded');
         let userIsRegistered;
         let user;
@@ -48,7 +48,7 @@ FoodPlateApp.InitUser = (function() {
                     $.mobile.navigate("#registerFormPage", {transition: "flip", info: "register user"});
                     //log button click
                     console.log('clicked register button');
-                    FoodPlateApp.ValidateRegistration.validateForm();
+                    FoodPlate.ValidateRegistration.validateForm();
                 });
             }
             else if(userIsRegistered) {

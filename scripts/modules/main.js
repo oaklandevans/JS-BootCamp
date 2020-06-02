@@ -1,55 +1,48 @@
-import { checkUser } from './user-test.js';
-
+import { checkUser } from './init-app.js';
+import { User } from './user.js';
 // https://medium.com/@petertumulty/avoiding-the-global-scope-with-the-revealing-module-pattern-6796ae7af1b9
 // https://general.support.brightcove.com/developer/concepts-javascript-module-design-pattern.html
-const FoodPlateApp = (function() {
-    let user = 'default user';
-    let req = {};
-    let registered = false;
+
+const FoodPlate = (function() {
+    let user = new User();
     let checkInDate = new Date();
     let returnDate = new Date();
     let ageGroup = null;
     let difference = null;
-    let userCode = null;
-    let age = null;
-    let gender = null;
-    let firstName = null;
     let minutesDifference = null;
     let secondsDifference = null;
     let selectedFood = null;
     let userIsRegistered = false;
-    let regBtn = document.getElementById('initRegister_btn');
+    // DOM Elements
+    const regBtn = document.getElementById('initRegister_btn');
+    const firstnameTI = document.getElementById('firstName');
 
     return { user: user,
-             req: req,
-             registered: registered,
              checkInDate: checkInDate,
              returnDate: returnDate,
              difference: difference,
-             userCode: userCode,
-             gender: gender,
-             firstName: firstName,
+             userCode: User.userCode,
              minutesDifference: minutesDifference,
              secondsDifference: secondsDifference,
              selectedFood: selectedFood,
              userIsRegistered: userIsRegistered,
              regBtn: regBtn,
-             age: age,
-             ageGroup: ageGroup
+             ageGroup: ageGroup,
+             firstnameTI
     };
 }());
 
 function init() {
+    console.log('%cinit function called', 'color:green');
     window.addEventListener('load', (event) => {
-        console.info(`event.type is: ${event.type}`)
-        console.info(`FoodPlateApp module loaded`);
-        console.info(`InitMainPage module loaded`);
+        console.info(`event occurred - event.type is: ${event.type} event`)
+        console.info('%cmain.js module has loaded', 'color: red');
         checkUser();
     });
 }
 
 init();
 
-export { FoodPlateApp }
+export { FoodPlate }
 
 

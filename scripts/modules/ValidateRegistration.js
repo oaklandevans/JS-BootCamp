@@ -1,4 +1,4 @@
-FoodPlateApp.ValidateRegistration = (function($) {
+FoodPlate.ValidateRegistration = (function($) {
     var un = document.getElementById('firstName');
     var $adultRadioBtn = $('#ageGroupA');
     var $childRadioBtn = $('#ageGroupC');
