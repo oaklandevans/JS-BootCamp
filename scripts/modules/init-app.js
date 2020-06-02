@@ -5,20 +5,18 @@ import { User } from './user.js';
 
 function checkUser() {
     console.info('%cinit-app module has loaded', 'color: red');
-    if (localStorage.length > 0) {
-        // FoodPlate.userIsRegistered = true;
+    if (localStorage.getItem('user')) {
         User.registered = true;
         getUser();
         console.log('%cgetUser called function', 'color:green');
-        setRegistrationBtn();
+        setRegBtn();
         console.log('%csetRegistrationBtn function called', 'color:green');
     } else {
         FoodPlate.user.registered = false;
-        //FoodPlate.userIsRegistered = false;
-        // console.log(`userIsRegistered: ${FoodPlate.userIsRegistered}`);
-        setRegistrationBtn();
+        console.log(`userIsRegistered: ${FoodPlate.userIsRegistered}`);
+        setRegBtn();
     }
-    console.log('%ccheckUser function alled - user registered:', 'color:green',  `${FoodPlate.user.registered}`);
+    console.log('%ccheckUser function called - user registered:', 'color:green',  `${FoodPlate.user.registered}`);
 }
 
 function getUser() {
@@ -32,14 +30,14 @@ function getUser() {
     FoodPlate.lastCheckInDate = localStorage.getItem('checkInDate');
     console.log(FoodPlate.lastCheckInDate);
     //set this return date
-    returnDate = new Date();
+    FoodPlate.returnDate = new Date();
     //log return date
-    console.log(returnDate);
-    localStorage.setItem('returnDate', returnDate);
+    console.log(FoodPlate.returnDate);
+    localStorage.setItem('returnDate', FoodPlate.returnDate);
 }
 
-function setRegistrationBtn() {
-    console.log('%csetRegistrationBtn called', 'color: green');
+function setRegBtn() {
+    console.log('%csetRegistrationBtn function called', 'color: green');
     if (!FoodPlate.user.registered) {
         setRegBtnValue('Register');
         /* register_btn handler */
@@ -81,11 +79,12 @@ function checkTime() {
     }
 }
 
+// TODO categorize as a utility function and move to utils library
 function setRegBtnValue(btnValue) {
-    console.log('%csetRegBtnValue function called', 'color:green');
+    console.log(`%csetRegBtnValue function called and set registration button to ${btnValue}`, 'color:green');
     FoodPlate.regBtn.value = btnValue;
 }
 
 
-export { checkUser }
+export { checkUser, setRegBtnValue }
 

@@ -3,7 +3,7 @@ import { onRegisterSubmit } from './registerUser.js';
 
 function processForm() {
     console.log('%cvaildateReg module has loaded', 'color:red');
-    console.log('%cvalidateForm called', 'color:green');
+    console.log('%cvalidateForm function called', 'color:green');
     console.table(FoodPlate.user);
     const un = document.getElementById('firstName');
     const adultRadioBtn = document.getElementById('ageGroupA');
@@ -45,7 +45,7 @@ function processForm() {
     function setGender(evt) {
         console.log(`setGender is called: ${evt.target.nextElementSibling.value}`);
         let selectedRadio = evt.target.nextElementSibling.value;
-        FoodPlate.user.gender = selectedRadio;
+        FoodPlate.user.userGender = selectedRadio;
         console.table(FoodPlate.user);
     }
 
