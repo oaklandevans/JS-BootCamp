@@ -35,6 +35,17 @@ section[data-role='page'] {
 	margin-bottom: 1em;
 }
 
+
+.confirmMessage {
+	text-align:center;
+	border: 1px solid #000;
+	background-color: #fff;
+	border-radius: 1em;
+	padding: 8px;
+	width: 80%;
+	margin: 12px auto;
+}
+
 form ul li.box {
 	margin: 0 0 4px 0;
 	-webkit-border-radius:4px;
