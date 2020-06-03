@@ -190,6 +190,16 @@ form ul {
     margin-top: 0;
 }
 
+#staticHeader, #registerHeader, #addFoodHeader {
+	height: 67px;
+	display: flex;
+	align-items: center;
+}
+
+#staticHeader>img, #registerHeader>img, #addFoodHeader>img {
+	z-index: 100;
+}
+
 /* *********************************************************** jqmobile css overrides */
 .ui-header .ui-title {
     font-size: 24px;
