@@ -71,8 +71,6 @@ function createReturnToPlateBtn() {
 
 function createConfirmMessage() {
     let selectedGender = formatGender(FoodPlate.user.userGender);
-    console.log(selectedGender);
-    //let selectedGender = (FoodPlate.user.userGender === "M") ? "Male" : "Female";
     const confirmDiv = document.createElement('div');
     confirmDiv.setAttribute('class', 'confirmMessage');
     const confirmH2userName = document.createElement('h2');
@@ -84,7 +82,6 @@ function createConfirmMessage() {
     const confirmPGender = document.createElement('p');
     confirmPGender.innerText = `Your gender is: ${selectedGender}`;
     confirmDiv.appendChild(confirmPGender);
-    console.log(confirmDiv);
     return confirmDiv;
 }
 

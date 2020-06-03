@@ -8,7 +8,7 @@ function checkUser() {
     if (localStorage.getItem('user')) {
         User.registered = true;
         getUser();
-        console.log('%cgetUser called function', 'color:green');
+        console.log('%cgetUser function called', 'color:green');
         setRegBtn();
         console.log('%csetRegistrationBtn function called', 'color:green');
     } else {
@@ -20,19 +20,21 @@ function checkUser() {
 }
 
 function getUser() {
-    console.log(`getUser() called`);
+    console.log(`%cgetUser function called`, 'color:green');
     //get user object from localStorage
-    let user = localStorage.getItem('user');
-    //parse user as a user object
-    user = JSON.parse(user);
-    //log the user
-    console.log(user);
+    if (localStorage.key('user')) {
+        FoodPlate.user = JSON.parse(localStorage.getItem('user'));
+        console.log('user returned from localstorage');
+        console.table(FoodPlate.user);
+
+
+    }
     FoodPlate.lastCheckInDate = localStorage.getItem('checkInDate');
-    console.log(FoodPlate.lastCheckInDate);
-    //set this return date
+    console.log(`user's last checkin date was ${FoodPlate.lastCheckInDate}`);
+    //set this sessions return date
     FoodPlate.returnDate = new Date();
     //log return date
-    console.log(FoodPlate.returnDate);
+    console.log(`user returned on ${FoodPlate.returnDate}`);
     localStorage.setItem('returnDate', FoodPlate.returnDate);
 }
 
@@ -49,22 +51,21 @@ function setRegBtn() {
             document.getElementById('register_user_btn').addEventListener('click', onRegisterSubmit);
             processForm();
         });
-    } else if(FoodPlate.userIsRegistered) {
+    } else if(FoodPlate.user.registered) {
         setRegBtnValue('Check In');
         checkTime();
         FoodPlate.regBtn.addEventListener('click', function () {
+            // jquerymobile navigation method
             $.mobile.navigate("#addFoodPage", {transition: "flip", info: "let user add food"});
-            $('#welcomeHeader').text(user.userName + "'s Food Plate");
+            document.getElementById('welcomeHeader').innerText(`${FoodPlate.user.userName}'s Food Plate`);
         });
     }
 }
 
 function checkTime() {
-    console.log('checkTime called');
-    console.log(FoodPlate.lastCheckInDate);
+    console.log('%ccheckTime function called');
     FoodPlate.lastCheckInDate = new Date(FoodPlate.lastCheckInDate);
     FoodPlate.returnDate = new Date(FoodPlate.returnDate);
-    console.log(FoodPlate.returnDate);
     FoodPlate.difference = FoodPlate.lastCheckInDate.getTime() - FoodPlate.returnDate.getTime();
     FoodPlate.difference = Math.ceil(difference/(1000*60*60*24));
     console.log("difference: " + difference);
