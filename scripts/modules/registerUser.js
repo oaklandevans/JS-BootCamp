@@ -1,5 +1,7 @@
 import {FoodPlate} from './main.js';
 import { setRegBtnValue } from './init-app.js';
+import { getUserRequirements } from './userRequirements.js';
+import { getUserInitStatus } from './initStatus.js';
 
 function onRegisterSubmit() {
     console.log('%c onRegisterSubmit function called', 'color:green');
@@ -47,13 +49,15 @@ function createUser() {
 
 function confirmUser(user) {
     console.log('%cconfirmUser function called', 'color:green');
-    document.getElementById('registerHeader').innerText = FoodPlate.user.userName + "'s Food Plate";
+    document.querySelector('#registerHeader>h1').innerText = FoodPlate.user.userName + "'s Food Plate";
     const registerConfirmDiv = document.getElementById('registerConfirm');
     registerConfirmDiv.appendChild(createConfirmMessage());
     document.getElementById('registerForm').hidden = true;
     setRegBtnValue('Check In');
     registerConfirmDiv.appendChild(createReturnToPlateBtn());
     $.mobile.navigate("#registerFormPage", {transition: "flip", info: "let user add food"});
+    document.querySelector('#welcomeHeader').innerText = FoodPlate.user.userName + "'s Food Plate";
+
 }
 
 function createReturnToPlateBtn() {
@@ -95,127 +99,6 @@ function formatGender(gender) {
     return formattedGender;
 }
 
-function getUserRequirements(ageGroupParam) {
-    console.log(`%cgetUserRequirements function called using code: ${ageGroupParam}`,'color:green');
-    let requirements;
-    if (ageGroupParam === "F19-30") {
-        requirements = {
-            'fruit' : 2,
-            'protein' : 5.5,
-            'dairy' : 3,
-            'veg' : 2.5,
-            'grains' : 6
-        }
-    }
-    else if (ageGroupParam === "M19-30") {
-        requirements = {
-            "fruit": 2,
-            "protein": 5.5,
-            "dairy": 3,
-            "veg": 2.5,
-            "grains": 6
-        };
-    } else if (ageGroupParam === "M51+") {
-        console.log("Match: M51+");
-        requirements = {
-            "fruit": 2,
-            "protein": 5.5,
-            "dairy": 3,
-            "veg": 2.5,
-            "grains": 6
-        };
-    } else if (ageGroupParam === "F31-50" || "M9-13") {
-        requirements = {
-            "fruit": 1.5,
-            "protein": 5,
-            "dairy": 3,
-            "veg": 2.5,
-            "grains": 6
-        };
-    } else if (ageGroupParam === "F51+") {
-        requirements = {
-            "fruit": 1.5,
-            "protein": 5,
-            "dairy": 3,
-            "veg": 2,
-            "grains": 5
-        };
-    } else if (ageGroupParam === "F9-13") {
-        requirements = {
-            "fruit": 1.5,
-            "protein": 5,
-            "dairy": 3,
-            "veg": 2,
-            "grains": 5
-        };
-    } else if (ageGroupParam === "F14-18") {
-        requirements = {
-            "fruit": 1.5,
-            "protein": 5,
-            "dairy": 3,
-            "veg": 2.5,
-            "grains": 6
-        };
-    } else if (ageGroupParam === "F2-3" || "M2-3" || "M4-8") {
-        requirements = {
-            "fruit": 1,
-            "protein": 2,
-            "dairy": 2,
-            "veg": 1,
-            "grains": 3
-        };
-    } else if (ageGroupParam === "M31-50") {
-        requirements = {
-            "fruit": 2,
-            "protein": 6,
-            "dairy": 3,
-            "veg": 3,
-            "grains": 7
-        };
-    } else if (ageGroupParam === "M14-18") {
-        requirements = {
-            "fruit": 2,
-            "protein": 6.5,
-            "dairy": 3,
-            "veg": 3,
-            "grains": 8
-        };
-        FoodPlate.user.userReq = {
-            "fruit": req.fruit,
-            "protein": req.protein,
-            "grain": req.grain,
-            "veg": req.veg
-        };
-    }
-    //console.log(requirements);
-    return requirements;
-}
-
-function getUserInitStatus() {
-    let fruit = {
-        'eaten': 0,
-        'met': 'false',
-        'left': 0
-    };
-    let protein = {
-        'eaten': 0,
-        'met': 'false',
-        'left': 0
-    };
-    let veg = {
-        'eaten': 0,
-        'met': 'false',
-        'left': 0
-    };
-    let grain = {
-        'eaten': 0,
-        'met': 'false',
-        'left': 0
-    };
-    let stats = [{'fruit': fruit}, {'protein' : protein}, {'veg': veg}, {'grain' : grain}];
-    return stats;
-}
-
 function setUserCode(gender, ageGroup) {
     console.log('%csetUserCode function called', 'color:green');
     FoodPlate.user.userCode = gender + ageGroup;
@@ -230,4 +113,4 @@ function storeUserData(user) {
     localStorage.setItem("user", JSON.stringify(user));
 }
 
-export { onRegisterSubmit }
+export { onRegisterSubmit, storeUserData }
