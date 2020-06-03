@@ -23,3 +23,4 @@ function getUserInitStatus() {
     return stats;
 }
 export { getUserInitStatus }
+
