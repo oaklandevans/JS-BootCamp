@@ -4,7 +4,7 @@ import { processForm } from './validateReg.js';
 import { updateImages } from './plateManagement.js';
 import { DOMnodes } from './domNodes.js';
 import { getUserInitStatus } from './initStatus.js';
-import { storeUserData, storeDate } from './registerUser.js';
+import { storeUserData, storeDate, setRegBtnValue } from './utils.js';
 
 function checkUser() {
     console.info('%cinit-app module has loaded', 'color: red');
@@ -56,18 +56,6 @@ function setRegBtn() {
     }
 }
 
-function updateCheckIn() {
-    console.log('%cupdateUser function called', 'color:green');
-    FoodPlate.lastCheckInDate = localStorage.getItem('checkInDate');
-    console.log(`user's last checkin date was ${FoodPlate.lastCheckInDate}`);
-    //set this sessions return date
-    FoodPlate.returnDate = new Date();
-    //log return date
-    console.log(`user returned on ${FoodPlate.returnDate}`);
-    localStorage.setItem('returnDate', FoodPlate.returnDate);
-    // checkTime();
-}
-
 function welcomeUser() {
     console.log('%cwelcomeUser function called', 'color:green');
     DOMnodes.staticHeaderH1.innerText = `${FoodPlate.user.userName}'s Food Plate`;
@@ -77,9 +65,9 @@ function welcomeUser() {
 
 function  checkTime() {
     console.log('%ccheckTime function called', 'color:green');
-    // let newReturnDate = new Date();
+    let newReturnDate = new Date();
     // to test >24 hour time lapse - remove comment for the line below; add comment for the line above
-    let newReturnDate = new Date(2021, 7, 7);
+    // let newReturnDate = new Date(2021, 7, 7);
     FoodPlate.returnDate = newReturnDate;
     let lastVisitDate = new Date(localStorage.getItem('returnDate'));
     console.log(lastVisitDate);
@@ -99,47 +87,6 @@ function  checkTime() {
          storeDate('returnDate', FoodPlate.returnDate);
     }
 }
-
-
- /*   function checkTime() {
-        console.log('%ccheckTime function called', 'color:green');
-        FoodPlate.lastCheckInDate = new Date(FoodPlate.checkInDate);
-
-        // FoodPlate.returnDate = new Date(FoodPlate.returnDate);
-        // testDate
-        FoodPlate.returnDate = new Date(2021, 7, 7);
-        FoodPlate.difference = FoodPlate.lastCheckInDate.getTime() - FoodPlate.returnDate.getTime();
-        FoodPlate.difference = Math.ceil(FoodPlate.difference/(1000*60*60*24));
-        console.log("difference between register date and check in date is: " + FoodPlate.difference);
-        if (FoodPlate.difference >= 0) {
-            console.log('user has checked in on the same date as registration date');
-        } else if (FoodPlate.difference <= -1) {
-            console.log('24 hours have passed - clean plate and reset checkin/return dates');
-            alert("It has been more than 24 hours since your last check in. Your plate will be reset for today.");
-            // updateStatus();
-            // console.table(FoodPlate.user.userReq);
-            // updateImages(FoodPlate.user);
-            FoodPlate.user.userStatus = getUserInitStatus();
-            storeUserData(FoodPlate.user);
-            FoodPlate.checkInDate = new Date();
-            FoodPlate.returnDate  = new Date();
-            storeDate(FoodPlate.checkInDate, FoodPlate.checkInDate);
-            storeDate(FoodPlate.returnDate, FoodPlate.returnDate);
-
-        }
-    }*/
-
-    /*function updateStatus() {
-        getUserInitStatus();
-    }*/
-
-// TODO categorize as a utility function and move to utils library
-    function setRegBtnValue(btnValue) {
-        console.log(`%csetRegBtnValue function called and set registration button to ${btnValue}`, 'color:green');
-        DOMnodes.regBtn.value = btnValue;
-    }
-
-
 
 export { checkUser, setRegBtnValue }
 

@@ -1,5 +1,6 @@
 import { FoodPlate } from './main.js';
-import { storeUserData } from './registerUser.js';
+import { storeUserData } from './utils.js';
+import { DOMnodes } from './domNodes.js';
 
 // drag the foodIcons
 /* draggable methods comes from jqueryUI library. see https://jqueryui.com/draggable/ */
@@ -31,8 +32,6 @@ function foodDropEvent(evt, ui) {
     let foodDropEvt = evt;
     let selectedFood = ui.draggable.attr('id');
     console.log('event occurred: ' + foodDropEvt + ": " + selectedFood);
-    // TODO remove comment below for checkDate() and test
-    //checkDate();
     diaryUpdate(selectedFood);
 }
 
@@ -61,11 +60,11 @@ function loadImage(origImg, newImg) {
 }
 
 function foodGroupMet(group) {
-    document.getElementById('status').innerHTML = `<p>You have eaten all the ${group} you need to eat today!</p>`;
+   DOMnodes.statusDiv.innerHTML = `<p>You have eaten all the ${group} you need to eat today!</p>`;
 }
 
 function updateStatusMessage(group, index, amount, quantity) {
-    document.getElementById('status').innerHTML = `<p>You have eaten ${quantity} ${amount} of ${group}. You need to eat more.</p>`;
+    DOMnodes.statusDiv.innerHTML = `<p>You have eaten ${quantity} ${amount} of ${group}. You need to eat more.</p>`;
     console.table(FoodPlate.user.userStatus);
 }
 
@@ -82,7 +81,7 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[0].fruit.eaten = 1;
             FoodPlate.user.userStatus[0].fruit.left = Number(FoodPlate.user.userReq.fruit) - Number(FoodPlate.user.userStatus[0].fruit.eaten);
             FoodPlate.user.userStatus[0].fruit.met = 'false';
-            document.getElementById('status').classList.remove('visually-hidden');
+            DOMnodes.statusDiv.classList.remove('visually-hidden');
             updateStatusMessage('fruit', 0, measure, FoodPlate.user.userStatus[0].fruit.eaten);
         }
         else {
@@ -90,11 +89,11 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[0].fruitLeft = FoodPlate.user.userReq.fruit - FoodPlate.user.userStatus[0].fruit.eaten;
             FoodPlate.user.userStatus[0].fruit.met = false;
             if (Number(FoodPlate.user.userStatus[0].fruit.eaten) < Number(FoodPlate.user.userReq.fruit)) {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 updateStatusMessage('fruit', 0, measure, FoodPlate.user.userStatus[0].fruit.eaten);
             }
             else {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 foodGroupMet('fruit')
                 FoodPlate.user.userStatus[0].fruit.met = 'true';
                 console.log("ate all your fruit");
@@ -111,7 +110,7 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[1].protein.eaten = 1;
             FoodPlate.user.userStatus[1].protein.left = Number(FoodPlate.user.userReq.protein) - Number(FoodPlate.user.userStatus[1].protein.eaten);
             FoodPlate.user.userStatus[1].protein.met = 'false';
-            document.getElementById('status').classList.remove('visually-hidden');
+            DOMnodes.statusDiv.classList.remove('visually-hidden');
             updateStatusMessage('protein', 1, measure, FoodPlate.user.userStatus[1].protein.eaten);
         }
         else {
@@ -119,11 +118,11 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[1].proteinLeft = FoodPlate.user.userReq.protein - FoodPlate.user.userStatus[1].protein.eaten;
             FoodPlate.user.userStatus[1].protein.met = false;
             if (Number(FoodPlate.user.userStatus[1].protein.eaten) < Number(FoodPlate.user.userReq.protein)) {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 updateStatusMessage('protein', 1, measure, FoodPlate.user.userStatus[1].protein.eaten);
             }
             else {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 foodGroupMet('protein')
                 FoodPlate.user.userStatus[1].protein.met = 'true';
                 console.log("ate all your protein");
@@ -140,7 +139,7 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[2].veg.eaten = 1;
             FoodPlate.user.userStatus[2].veg.left = Number(FoodPlate.user.userReq.veg) - Number(FoodPlate.user.userStatus[2].veg.eaten);
             FoodPlate.user.userStatus[2].veg.met = 'false';
-            document.getElementById('status').classList.remove('visually-hidden');
+            DOMnodes.statusDiv.classList.remove('visually-hidden');
             updateStatusMessage('veg', 2, measure, FoodPlate.user.userStatus[2].veg.eaten);
         }
         else {
@@ -148,11 +147,11 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[2].vegLeft = FoodPlate.user.userReq.veg - FoodPlate.user.userStatus[2].veg.eaten;
             FoodPlate.user.userStatus[2].veg.met = false;
             if (Number(FoodPlate.user.userStatus[2].veg.eaten) < Number(FoodPlate.user.userReq.veg)) {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 updateStatusMessage('veg', 2, measure, FoodPlate.user.userStatus[2].veg.eaten);
             }
             else {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 foodGroupMet('veg')
                 FoodPlate.user.userStatus[2].veg.met = 'true';
                 console.log("ate all your veg");
@@ -169,7 +168,7 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[3].grain.eaten = 1;
             FoodPlate.user.userStatus[3].grain.left = Number(FoodPlate.user.userReq.grain) - Number(FoodPlate.user.userStatus[3].grain.eaten);
             FoodPlate.user.userStatus[3].grain.met = 'false';
-            document.getElementById('status').classList.remove('visually-hidden');
+            DOMnodes.statusDiv.classList.remove('visually-hidden');
             updateStatusMessage('grain', 3, measure, FoodPlate.user.userStatus[3].grain.eaten);
         }
         else {
@@ -177,11 +176,11 @@ function diaryUpdate(foodAdded) {
             FoodPlate.user.userStatus[3].grainLeft = FoodPlate.user.userReq.grain - FoodPlate.user.userStatus[3].grain.eaten;
             FoodPlate.user.userStatus[3].grain.met = false;
             if (Number(FoodPlate.user.userStatus[3].grain.eaten) < Number(FoodPlate.user.userReq.grain)) {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 updateStatusMessage('grain', 3, measure, FoodPlate.user.userStatus[3].grain.eaten);
             }
             else {
-                document.getElementById('status').classList.remove('visually-hidden');
+                DOMnodes.statusDiv.classList.remove('visually-hidden');
                 foodGroupMet('grain')
                 FoodPlate.user.userStatus[3].grain.met = 'true';
                 console.log("ate all your grain");

@@ -1,12 +1,12 @@
-import {FoodPlate} from './main.js';
-import { setRegBtnValue } from './init-app.js';
+import { FoodPlate } from './main.js';
 import { getUserRequirements } from './userRequirements.js';
 import { getUserInitStatus } from './initStatus.js';
+import { storeUserData, storeDate, setRegBtnValue } from './utils.js';
+import { DOMnodes } from './domNodes.js';
 
 function onRegisterSubmit() {
     console.log('%c onRegisterSubmit function called', 'color:green');
-    let username = document.getElementById('firstName');
-    if (username.checkValidity() === false) {
+    if (DOMnodes.userName.checkValidity() === false) {
         alert("You did not complete the First Name field.")
     } else {
         if (FoodPlate.user.age === "adult") {
@@ -49,15 +49,14 @@ function createUser() {
 
 function confirmUser(user) {
     console.log('%cconfirmUser function called', 'color:green');
-    document.querySelector('#registerHeader>h1').innerText = FoodPlate.user.userName + "'s Food Plate";
-    const registerConfirmDiv = document.getElementById('registerConfirm');
-    registerConfirmDiv.appendChild(createConfirmMessage());
-    document.getElementById('registerForm').hidden = true;
+    DOMnodes.registerHeaderH1.innerText = FoodPlate.user.userName + "'s Food Plate";
+    DOMnodes.registerConfirmDiv.appendChild(createConfirmMessage());
+    DOMnodes.registerForm.hidden = true;
     setRegBtnValue('Check In');
-    registerConfirmDiv.appendChild(createReturnToPlateBtn());
+    DOMnodes.registerConfirmDiv.appendChild(createReturnToPlateBtn());
     // jquerymobile navigation method to go to add Food Page. see https://api.jquerymobile.com/navigate/
     $.mobile.navigate("#registerFormPage", {transition: "flip", info: "let user add food"});
-    document.querySelector('#welcomeHeader').innerText = FoodPlate.user.userName + "'s Food Plate";
+    DOMnodes.welcomeHeader.innerText = FoodPlate.user.userName + "'s Food Plate";
 
 }
 
@@ -104,18 +103,6 @@ function setUserCode(gender, ageGroup) {
     console.log('%csetUserCode function called', 'color:green');
     FoodPlate.user.userCode = gender + ageGroup;
     console.table(FoodPlate.user);
-}
-
-// TODO categorize as a utility function and move to utils library
-function storeDate(name, date) {
-    console.log('%cstoreDate function called', 'color:green');
-    localStorage.setItem(name, date);
-}
-
-// TODO categorize as a utility function and move to utils library
-function storeUserData(user) {
-    console.log('%cstoreUserData function called', 'color:green');
-    localStorage.setItem("user", JSON.stringify(user));
 }
 
 export { onRegisterSubmit, storeUserData, storeDate }
