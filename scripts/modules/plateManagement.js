@@ -1,8 +1,8 @@
-import { User } from './user.js';
-import {FoodPlate} from './main.js';
+import { FoodPlate } from './main.js';
 import { storeUserData } from './registerUser.js';
 
-//drag the foodIcons
+// drag the foodIcons
+/* draggable methods comes from jqueryUI library. see https://jqueryui.com/draggable/ */
 function activateFoodIcons() {
     $('#fruitIcon').draggable({opacity: ".75", revert: 'invalid', helper: 'clone', cursor: 'pointer'});
     $('#vegIcon').draggable({opacity: ".75", revert: 'invalid', helper: 'clone', cursor: 'pointer'});

@@ -26,7 +26,7 @@ function onRegisterSubmit() {
         console.log(`returnDate: ${FoodPlate.returnDate}`);
         setUserCode(FoodPlate.user.userGender, FoodPlate.user.ageGroup);
         createUser();
-        //store the user data in local storage
+        // store the user data in local storage
         // storeUserData(user);
         //store the check in date and the return date (user has registered with checkin date and simultaneously returns
         storeDate('checkInDate', FoodPlate.checkInDate);
@@ -55,6 +55,7 @@ function confirmUser(user) {
     document.getElementById('registerForm').hidden = true;
     setRegBtnValue('Check In');
     registerConfirmDiv.appendChild(createReturnToPlateBtn());
+    // jquerymobile navigation method to go to add Food Page. see https://api.jquerymobile.com/navigate/
     $.mobile.navigate("#registerFormPage", {transition: "flip", info: "let user add food"});
     document.querySelector('#welcomeHeader').innerText = FoodPlate.user.userName + "'s Food Plate";
 
@@ -105,12 +106,16 @@ function setUserCode(gender, ageGroup) {
     console.table(FoodPlate.user);
 }
 
+// TODO categorize as a utility function and move to utils library
 function storeDate(name, date) {
+    console.log('%cstoreDate function called', 'color:green');
     localStorage.setItem(name, date);
 }
 
+// TODO categorize as a utility function and move to utils library
 function storeUserData(user) {
+    console.log('%cstoreUserData function called', 'color:green');
     localStorage.setItem("user", JSON.stringify(user));
 }
 
-export { onRegisterSubmit, storeUserData }
+export { onRegisterSubmit, storeUserData, storeDate }
