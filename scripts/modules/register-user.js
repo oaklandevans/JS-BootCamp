@@ -1,8 +1,8 @@
 import { FoodPlate } from './main.js';
-import { getUserRequirements } from './userRequirements.js';
-import { getUserInitStatus } from './initStatus.js';
+import { getUserRequirements } from './user-requirements.js';
+import { getUserInitStatus } from './init-status.js';
 import { storeUserData, storeDate, setRegBtnValue } from './utils.js';
-import { DOMnodes } from './domNodes.js';
+import { DOMnodes } from './dom-nodes.js';
 
 function onRegisterSubmit() {
     console.log('%c onRegisterSubmit function called', 'color:green');

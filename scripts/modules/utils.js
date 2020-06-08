@@ -1,4 +1,4 @@
-import {DOMnodes} from './domNodes.js';
+import {DOMnodes} from './dom-nodes.js';
 
 export function setRegBtnValue(btnValue) {
     console.log(`%csetRegBtnValue function called and set registration button to ${btnValue}`, 'color:green');

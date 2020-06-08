@@ -1,6 +1,6 @@
 import { FoodPlate } from './main.js';
 import { storeUserData } from './utils.js';
-import { DOMnodes } from './domNodes.js';
+import { DOMnodes } from './dom-nodes.js';
 
 // drag the foodIcons
 /* draggable methods comes from jqueryUI library. see https://jqueryui.com/draggable/ */

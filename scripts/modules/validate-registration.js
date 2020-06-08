@@ -1,6 +1,6 @@
 import { FoodPlate } from './main.js';
-import { onRegisterSubmit } from './registerUser.js';
-import { DOMnodes } from './domNodes.js';
+import { onRegisterSubmit } from './register-user.js';
+import { DOMnodes } from './dom-nodes.js';
 
 function processForm() {
     console.log('%cvaildateReg module has loaded', 'color:red');

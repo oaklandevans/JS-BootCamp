@@ -1,6 +1,6 @@
-import { User } from './user.js';
+import { User } from './User.js';
 import { checkUser } from './init-app.js';
-import { activateFoodIcons } from './plateManagement.js';
+import { activateFoodIcons } from './plate-management.js';
 
 const FoodPlate = (function() {
     let user = new User();

@@ -1,9 +1,9 @@
 import { FoodPlate } from './main.js';
-import { onRegisterSubmit } from './registerUser.js';
-import { processForm } from './validateReg.js';
-import { updateImages } from './plateManagement.js';
-import { DOMnodes } from './domNodes.js';
-import { getUserInitStatus } from './initStatus.js';
+import { onRegisterSubmit } from './register-user.js';
+import { processForm } from './validate-registration.js';
+import { updateImages } from './plate-management.js';
+import { DOMnodes } from './dom-nodes.js';
+import { getUserInitStatus } from './init-status.js';
 import { storeUserData, storeDate, setRegBtnValue } from './utils.js';
 
 function checkUser() {
