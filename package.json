@@ -15,11 +15,6 @@
   "author": "Kevin Ruse",
   "license": "ISC",
   "devDependencies" : {
-    "jquery"                : "^2.1.4"
-    /* the libraries below have been provided for you in the libs folder due to stability and deprecation issues */
-    /*"jquery.mobile"         : "jquery.mobile-1.4.3",
-    "jquery-ui"             : "^jquery-ui-1.11.1",
-    "jquery.ui.touch-punch"  : "jquery.ui.touch-punch-0.2.3",
-    "jquery.validate"       : "jquery.validate-1.10.0"*/
+    "jquery" : "^2.1.4"
   }
 }
