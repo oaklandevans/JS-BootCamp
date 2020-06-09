@@ -26,9 +26,6 @@ function onRegisterSubmit() {
         console.log(`returnDate: ${FoodPlate.returnDate}`);
         setUserCode(FoodPlate.user.userGender, FoodPlate.user.ageGroup);
         createUser();
-        // store the user data in local storage
-        // storeUserData(user);
-        //store the check in date and the return date (user has registered with checkin date and simultaneously returns
         storeDate('checkInDate', FoodPlate.checkInDate);
         storeDate('returnDate', FoodPlate.returnDate);
     }
