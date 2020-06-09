@@ -6,11 +6,9 @@ function checkUser() {
     if (localStorage.length > 0) {
         console.log('checkUser() called: user has already registered');
         getUser();
-        setInitRegisterBtn();
     }
     else {
         console.log('checkUser() called: user has not registered');
-        setInitRegisterBtn();
     }
 }
 
