@@ -70,7 +70,7 @@ function updateStatusMessage(group, index, amount, quantity) {
 
 function diaryUpdate(foodAdded) {
     console.log('%cdiary update function called', 'color:green');
-    var measure;
+    let measure;
     //if you added fruit
     if (foodAdded === "fruitIcon") {
         measure = "cup";
