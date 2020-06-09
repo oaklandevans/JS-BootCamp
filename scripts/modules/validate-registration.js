@@ -52,5 +52,5 @@ function setUserName(evt) {
     console.table(FoodPlate.user);
 }
 
-export {processForm}
+export { processForm }
 
