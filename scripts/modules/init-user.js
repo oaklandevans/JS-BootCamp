@@ -9,7 +9,6 @@ function checkUser() {
     const regBtn = document.getElementById('initRegister_btn');
     if (localStorage.length > 0) {
         console.log('checkUser() called: user has already registered');
-        userIsRegistered = true;
         getUser();
         setInitRegisterBtn();
     }
