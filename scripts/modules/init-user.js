@@ -1,3 +1,5 @@
+import { getUser } from './init-app.js';
+
 
 function checkUser() {
     console.log('FoodPlateApp InitUser module loaded');

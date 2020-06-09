@@ -56,6 +56,7 @@ function setRegBtn() {
     }
 }
 
+
 function welcomeUser() {
     console.log('%cwelcomeUser function called', 'color:green');
     DOMnodes.staticHeaderH1.innerText = `${FoodPlate.user.userName}'s Food Plate`;
@@ -88,5 +89,5 @@ function  checkTime() {
     }
 }
 
-export { checkUser, setRegBtnValue }
+export { checkUser, setRegBtnValue, getUser }
 
