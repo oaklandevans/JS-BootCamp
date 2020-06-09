@@ -9,14 +9,9 @@ import { storeUserData, storeDate, setRegBtnValue } from './utils.js';
 function checkUser() {
     console.info('%cinit-app module has loaded', 'color: red');
     console.log('%ccheckUser function has been called', 'color:green');
-    if (localStorage.getItem('user')) {
-        getUser();
-        setRegBtn();
-    } else {
-        FoodPlate.user.registered = false;
-        console.log(`userIsRegistered: ${FoodPlate.user.registered}`);
-        setRegBtn();
-    }
+    // write conditional for challenge-7 here
+
+
     console.log('%ccheckUser function called - user registered:', 'color:green',  `${FoodPlate.user.registered}`);
 }
 
