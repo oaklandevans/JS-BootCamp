@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Traversal APIs-starter</title>
+  <style>
+    body {
+      font-family: Arial;
+    }
+
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="problem1">
+    <h1>Manipulating the DOM</h1>
+    <div class="tab">
+      <button id="markup" class="tablinks" onclick="openTab('markup')">Structural Markup</button>
+      <button id="style" class="tablinks" onclick="openTab('style')">Stylesheet Language</button>
+      <button id="scripting" class="tablinks" onclick="openTab('scripting')">Scripting Language</button>
+    </div>
+
+    <section id="markupSection" class="tabcontent">
+      <h3>Markup</h3>
+      <p>HTML is a markup language.</p>
+      <input type="checkbox" id="xhtml" name="XHTML">
+      <label for="xhtml">I want to use XHTML because I am using xml.</label>
+    </section>
+
+    <section id="styleSection" class="tabcontent">
+      <h3>Styles</h3>
+      <p>CSS is a declarative language.</p>
+      <input type="checkbox" id="sass" name="Sass">
+      <label for="sass">I want to use Sass because I am using a preprocessor.</label>
+    </section>
+
+    <section id="scriptingSection" class="tabcontent">
+      <h3>Scripting</h3>
+      <p>JavaScript is an interpreted, object-oriented language.</p>
+      <input type="checkbox" id="ts" name="TypeScript">
+      <label for="ts">I want to use typescript because I am using the Angular framework.</label>
+    </section>
+  </section>
+  <script>
+    // create an array of checkboxe ids
+    let checkboxes = document.querySelectorAll('input');
+    let checkboxIds = [];
+    checkboxes.forEach(function (btn) {
+      let checkboxId = btn.id;
+      checkboxIds.push(checkboxId);
+    })
+
+    // using the array of checkbox ids, add an event listener to the checkboxes to call the addTab method
+    const registerButtonEventListeners = (btnIds) => {
+      btnIds.forEach(btn => {
+        document.getElementById(btn).addEventListener('click', (evt) => {
+          addTab(evt.target);
+        })
+      })
+    }
+
+    // register the event listeners
+    registerButtonEventListeners(checkboxIds);
+
+    function openTab(tabName) {
+      console.log(`openTab() function parameter tabName =  ${tabName}Section`);
+      let i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(`${tabName}Section`).style.display = "block";
+    }
+
+    // write a function to add new tabs
+    function addTab(checkbox) {
+      // add a reference called choice to the name of the checkbox passed in as an argument
+      let choice = checkbox.name.toString();
+
+      // call the addSection function and pass the name of the checkbox passed in as argument
+      addSection(choice);
+
+      // create a reference to the last button on the page and name it "lastTab"
+      let lastTab = document.querySelector('button:last-of-type');
+
+      // create a reference to the lastTab's parent node and name it "tabParent"
+      let tabParent = lastTab.parentNode;
+
+      //create a new 'button' element and name it "newTab"
+      let newTab = document.createElement('button');
+
+      // give the new button element the attributes: id equal to the checkboxes name and class set to 'tablinks'
+      newTab.setAttribute('id', checkbox.name);
+      newTab.setAttribute('class', 'tablinks');
+
+      // add an event listener to the new button that calls openTab onclick and passes in the event as argument one and the choice variable as the second argument
+      newTab.setAttribute('onclick', `openTab('${choice}')`);
+
+      // set the innerText of the newTab to the checkboxes' name
+      newTab.innerText = `${checkbox.name}`;
+
+      // append the newTab element to the tabParent element
+      tabParent.appendChild(newTab);
+    }
+
+    // write a function to add new sections
+    function addSection(choice) {
+      // create a reference to the last Section element that is a child of the first section element and name it 'lastSection'
+      let lastSection = document.querySelector('section>section:last-of-type');
+
+      // create an element called newSection
+      let newSection = document.createElement('section');
+
+      // set the following attributes and values for the new section
+      // id= the choice parameter + the string 'Section'
+      // class='tabcontent'
+      newSection.setAttribute('id', `${choice}Section`);
+      newSection.setAttribute('class', 'tabcontent');
+
+      // create an <h3> element called 'heading'
+      let heading = document.createElement('h3');
+
+      // set the heading element's innerText to the choice parameter
+      heading.innerText = choice;
+
+      // append the heading element to the newSection
+      newSection.appendChild(heading);
+
+      // insert the newSection element before the lastSection element's next sibling
+      lastSection.parentNode.insertBefore(newSection, lastSection.nextSibling);
+    }
+
+  </script>
+</body>
+
+</html>
