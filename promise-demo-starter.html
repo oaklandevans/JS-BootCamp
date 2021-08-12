@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Promise Demo</title>
+</head>
+
+<body>
+    <button onclick="promiseOneTest()">Call Promise One</button>
+    <p>Promise One results: <span id="promiseOne"></span></p>
+
+    <button onclick="promiseTwoTest()">Call Promise Two</button>
+    <p>Promise Two results: <span id="promiseTwo"></span></p>
+
+    <button onclick="promiseThreeTest()">Call Promise Three</button>
+    <p>Promise Three results: <span id="promiseThree"></span></p>
+
+
+    <script>
+
+        //Write promise one here
+        let promiseOneTest = function () {
+            let promiseOne = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    console.log('promiseOneTest called');
+                    document.querySelector('#promiseOne').innerText = "promiseOneTest promise fulfilled";
+                    console.log('promiseOneTest promise fulfilled');
+                }, 2000);
+            });
+            console.log('promiseOne: ');
+            console.log(promiseOne);
+        };
+
+        //Write promise two - make the promise
+        let trigger = true;
+        let promiseTwo;
+        function promiseTwoTest() {
+            promiseTwo = new Promise(
+                function (resolve, reject) {
+                    if (trigger) {
+                        let promiseMessage = 'promiseTwoTest is fulfilled';
+                        resolve(promiseMessage);
+                    }
+                    else {
+                        let promiseMessage = new Error('second promise is rejected with error');
+                        reject(promiseMessage);
+                    }
+                });
+            console.log('promiseTwo:');
+            console.log(promiseTwo);
+
+        }
+
+        //Call the promise
+        let callPromiseTwo = function () {
+            promiseTwoTest();
+            console.log('promiseTwoTest called');
+            promiseTwo
+                .then(function (fulfilled) {
+                    console.log('promiseTwo promise is fulfilled');
+                    document.querySelector('#promiseTwo').innerText = 'second promise is fulfilled'
+                })
+                .catch(function (error) {
+                    console.log(`promiseTwo ${error.message}`);
+                    document.querySelector('#promiseTwo').innerText = 'second promise is rejected with error';
+                })
+        };
+
+        //promise three with data
+        let promiseThreeTest = function (info) {
+            let promiseThree = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    console.log('promiseThreeTest promise called');
+                    resolve({ data: '123' })
+                }, 2000);
+            })
+                .then(function (result) {
+                    console.log('promiseThree fulfilled with data');
+                    document.querySelector('#promiseThree').innerText = `second promise with data: ${result.data}`
+                });
+            return promiseThree;
+        };
+
+
+    //promise.all
+    let promiseA = Promise.resolve(2);
+    let promiseB = Promise.resolve(7);
+    let promiseC = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log('promiseC called');
+            resolve('PromiseC resolved');
+        }, 6000);
+    });
+
+    Promise.all([promiseA, promiseB, promiseC]).then(function(values) {
+        console.log(values);
+    });
+
+    Promise.race([promiseA, promiseB, promiseC])
+        .then(function(value) {
+            console.log(`the first returned value from the Promise.race() is ${value}`);
+        })
+
+
+    </script>
+</body>
+
+</html>
