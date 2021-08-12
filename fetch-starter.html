@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fetch</title>
+</head>
+<body>
+<h1>User #1: <span id="showUser"></span></h1>
+<button id="getUsers">Get All Users</button>
+<script>
+    let usersURL = 'https://reqres.in/api/users';
+    let userDelayed = 'https://reqres.in/api/users?delay=3';
+    let userNotFound = 'https://reqres.in/api/users/23';
+    let users;
+
+    document.getElementById('getUsers').addEventListener('click', function() {
+        getUsers(userNotFound);
+    });
+
+
+    async function getUsers(url) {
+        try {
+            let response = await fetch(url);
+            if(response.status == 200) {
+                let users = await response.json();
+                console.log(users);
+                document.getElementById('showUser').textContent = users.data[0].first_name;
+            }
+            else {
+                document.getElementById('showUser').textContent = `ERROR: ${response.status}`;
+                throw new Error(response.status);
+            }
+        } catch(err) {
+            console.log(err);
+            document.getElementById('showUser').textContent = `ERROR: ${err}`;
+        }
+    }
+
+</script>
+</body>
+</html>
